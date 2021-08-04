@@ -25,7 +25,13 @@ function getParkName(){
       parkNameEl = $('<p>');
       parkDescEl = $('<p>');
       parkHoursEl = $('<ul>');
-      parkDailyHoursEl = $('<li>');
+      mon = $('<li>');
+      tue = $('<li>');
+      wed = $('<li>');
+      thu = $('<li>');
+      fri = $('<li>');
+      sat = $('<li>');
+      sun = $('<li>');
       
       parkImg = parks.images[0].url;
       parkImgAlt = parks.images[0].altText;
@@ -39,37 +45,43 @@ function getParkName(){
       //append data to elements
 
       parkImgEl.attr('src', parkImg);
+      parkImgEl.addClass('park-img')
       parkImgEl.attr('alt', parkImgAlt)
       parkEl.append(parkImgEl);
 
       parkNameEl.text(parkName);
+      parkNameEl.addClass('park-name')
       parkEl.append(parkNameEl);
 
       parkDescEl.text(parkDesc);
+      parkDescEl.addClass('park-desc')
       parkEl.append(parkDescEl);
+
+      parkHoursEl.addClass('hours')
+      parkEl.append(parkHoursEl);
       
-      parkDailyHoursEl.text(`Monday: ${monday}`);
-      parkEl.append(parkDailyHoursEl);
+      mon.text(`Monday: ${monday}`);
+      parkHoursEl.append(mon);
 
-      parkDailyHoursEl.text(`Tuesday: ${tuesday}`);
-      parkEl.append(parkDailyHoursEl);
+      tue.text(`Tuesday: ${tuesday}`);
+      parkHoursEl.append(tue);
 
-      parkDailyHoursEl.text(`Wednesday: ${wednesday}`);
-      parkEl.append(parkDailyHoursEl);
+      wed.text(`Wednesday: ${wednesday}`);
+      parkHoursEl.append(wed);
 
-      parkDailyHoursEl.text(`Thursday: ${thursday}`);
-      parkEl.append(parkDailyHoursEl);
+      thu.text(`Thursday: ${thursday}`);
+      parkHoursEl.append(thu);
 
-      parkDailyHoursEl.text(`Friday: ${friday}`);
-      parkEl.append(parkDailyHoursEl);
+      fri.text(`Friday: ${friday}`);
+      parkHoursEl.append(fri);
 
-      parkDailyHoursEl.text(`Saturday: ${saturday}`);
-      parkEl.append(parkDailyHoursEl);
+      sat.text(`Saturday: ${saturday}`);
+      parkHoursEl.append(sat);
 
-      parkDailyHoursEl.text(`Sunday: ${sunday}`);
-      parkEl.append(parkDailyHoursEl);
+      sun.text(`Sunday: ${sunday}`);
+      parkHoursEl.append(sun);
 
-      
+      parkEl.addClass('park-container')
       allParks.append(parkEl);
 
       console.log(parkImg);
