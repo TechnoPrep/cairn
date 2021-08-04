@@ -1,7 +1,14 @@
 const apiKey ="hrzeZivocJeVP942upjoq1HS5TL5d1mRUZmDQ64t"
 
-function getParkName(stateInput){
- fetch(`https://developer.nps.gov/api/v1/parks?api_key=${apiKey}&stateCode=&${stateInput}`)
+
+function getParkName(){
+
+  let queryString = document.location.search;
+  let stateCode = queryString.split('=');
+
+  console.log(stateCode);
+
+ fetch(`https://developer.nps.gov/api/v1/parks?api_key=${apiKey}&stateCode=&${stateCode}`)
   .then(response => { 
     if (!response.ok){
       throw Error("Error");
@@ -20,6 +27,8 @@ function getParkName(stateInput){
   })  
   .catch(error =>{
       console.log(error);
-      console.log(data);
+      // console.log(data);
      });    
 }  
+
+getParkName();
