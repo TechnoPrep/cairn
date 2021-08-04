@@ -1,8 +1,6 @@
-const apiUrl ="https://developer.nps.gov/api/v1/parks?api_key=hrzeZivocJeVP942upjoq1HS5TL5d1mRUZmDQ64t&stateCode=co";
 const apiKey ="hrzeZivocJeVP942upjoq1HS5TL5d1mRUZmDQ64t"
-var stateInput = ""
 
-function getParkName(){
+function getParkName(stateInput){
  fetch(`https://developer.nps.gov/api/v1/parks?api_key=${apiKey}&stateCode=&${stateInput}`)
   .then(response => { 
     if (!response.ok){
@@ -25,5 +23,3 @@ function getParkName(){
       console.log(data);
      });    
 }  
- 
-getParkName();
