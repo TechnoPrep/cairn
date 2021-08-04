@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
+    <link
+    rel="stylesheet"
+    href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
 </head>
 <body>
     <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
@@ -64,13 +68,13 @@
               <input class="input" type="text" placeholder="Name of Park">
             </div>
             <div class="control">
-              <a class="button is-info">
+              <button class="button is-info" id='search'>
                 Search
-              </a>
+              </button>
             </div>
             <div class="control has-icons-left">
                 <div class="select">
-                  <select>
+                  <select id='state'>
                     <option selected>State</option>
                     <option>Alabama</option>
                     <option>Alaska</option>
@@ -121,7 +125,6 @@
                     <option>West Virginia</option>
                     <option>Wisconsin</option>
                     <option>Wyoming</option>
-
                   </select>
                 </div>
                 <span class="icon is-left">
@@ -148,7 +151,8 @@
       </div>
       
 
-
-    <script src="./assets/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="./assets/js/index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>
