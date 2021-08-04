@@ -1,9 +1,14 @@
+
+
 $('#search').click(function (e) { 
    
     e.preventDefault();
-     let state = $('#state').val();
+    let state = $('#state').val();
+
+    if(state !== 'State'){
      
-    //  console.log(state);
-  
+       $(window).attr('location', `results.html?state=${state}`);
+    }
+
    });
   
