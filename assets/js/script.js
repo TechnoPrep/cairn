@@ -22,7 +22,7 @@ function getParkName(){
 
       parkEl = $('<li>')
       parkImgEl = $('<img>');
-      parkNameEl = $('<p>');
+      parkNameEl = $('<h2>');
       parkDescEl = $('<p>');
       parkHoursEl = $('<ul>');
       mon = $('<li>');
