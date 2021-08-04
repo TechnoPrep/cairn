@@ -1,4 +1,20 @@
-* {
-background-color: aquamarine;
+html { 
+  background: url("../img/yose1.png") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
+
+.form-container{
+  margin: 20px;
+  max-width: 1000px;
+  padding: 100px;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.6)
+}
+
+.search {
+  min-width: 15vh;
+}
