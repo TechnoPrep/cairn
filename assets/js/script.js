@@ -43,6 +43,8 @@ function getParkName(){
       parkImgAlt = parks.images[0].altText;
       parkName = parks.fullName;
       parkDesc = parks.description;
+      parklat = parks.latitude;
+      parklon = parks. longitude;
 
       parkHours = parks.operatingHours[0].standardHours;
 
@@ -94,7 +96,8 @@ function getParkName(){
       console.log(parkName);
       console.log(parkDesc);
       console.log(parkHours);
-
+      console.log(parklat);
+      console.log(parklon);
     })
     .join("")
   console.log(html);  
@@ -102,8 +105,10 @@ function getParkName(){
   })  
   .catch(error =>{
       console.log(error);
-      console.log(data);
-     });    
+      // console.log(data);
+     });   
+     
+  $("#park-name").text("")
 }  
 
 getParkName();
