@@ -33,8 +33,19 @@ function getParkName(){
       parkNameEl = $('<h2>');
       parkDescDiv = $('<div>');
       parkDescEl = $('<p>');
+      parkDescH = $('<h3>');
+
       parkHoursDiv = $('<div>')
       parkHoursEl = $('<ul>');
+      parkHoursH = $('<h3>');
+
+      parkContactDiv = $('<div>')
+      parkContactH = $('<h3>');
+      parkContactEl = $('<ul>')
+      parkPhoneEl = $('<li>')
+      parkWebEl = $('<li>')
+      parkWebAnchor = $('<a>');
+
       mon = $('<li>');
       tue = $('<li>');
       wed = $('<li>');
@@ -48,7 +59,9 @@ function getParkName(){
       parkName = parks.fullName;
       parkDesc = parks.description;
       parklat = parks.latitude;
-      parklon = parks. longitude;
+      parklon = parks.longitude;
+      parkPhone = parks.contacts.phoneNumbers[0].phoneNumber;
+      parkWeb = parks.url;
 
       parkHours = parks.operatingHours[0].standardHours;
 
@@ -69,16 +82,35 @@ function getParkName(){
       parkNameDiv.append(parkNameEl);
       parkEl.append(parkNameDiv);
 
+      parkDescH.text('Description');
+      parkDescDiv.append(parkDescH);
       parkDescEl.text(parkDesc);
       parkDescEl.addClass('park-desc title is-size-5 has-text-centered')
       parkDescDiv.addClass('card-content');
       parkDescDiv.append(parkDescEl);
       parkEl.append(parkDescDiv);
 
+      parkHoursH.text('Hours:');
       parkHoursEl.addClass('hours title is-size-5')
       parkHoursDiv.addClass('card-content');
+      parkHoursDiv.append(parkHoursH);
       parkHoursDiv.append(parkHoursEl);
       parkEl.append(parkHoursDiv);
+
+      parkContactH.text('Contact Info:');
+      parkPhoneEl.text(`Phone: ${parkPhone}`);
+      parkWebAnchor.text(`More Info`);
+      parkContactEl.addClass('contact-info title is-size-5')
+      parkContactDiv.addClass('card-content');
+      parkWebAnchor.attr('href',parkWeb);
+      parkWebAnchor.attr('target', '_blank');
+      parkContactDiv.append(parkContactH);
+      parkContactEl.append(parkPhoneEl);
+      
+      parkWebEl.append(parkWebAnchor);
+      parkContactEl.append(parkWebEl);
+      parkContactDiv.append(parkContactEl);
+      parkEl.append(parkContactDiv);
       
       mon.text(`Monday: ${monday}`);
       parkHoursEl.append(mon);
@@ -113,7 +145,7 @@ function getParkName(){
     })
     .join("")
   console.log(html);  
-  document.getElementById("parkNames").insertAdjacentHTML("afterbegin", html);  
+  // document.getElementById("parkNames").insertAdjacentHTML("afterbegin", html);  
   })  
   .catch(error =>{
       // console.log(error);
