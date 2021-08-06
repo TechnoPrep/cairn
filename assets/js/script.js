@@ -59,18 +59,18 @@ function getParkName(){
       parkImgEl.attr('src', parkImg);
       parkImgEl.addClass('park-img card-image has-text-centered px-6 mt-6')
       parkImgEl.attr('alt', parkImgAlt)
-      parkImgDiv.addClass('card-image has-text-centered px-6 mt-6');
+      parkImgDiv.addClass('card-image image is-2by1 has-text-centered px-6 mb-5');
       parkImgDiv.append(parkImgEl);
       parkEl.append(parkImgDiv);
 
       parkNameEl.text(parkName);
-      parkNameEl.addClass('park-name title is-size-5 has-text-centered')
+      parkNameEl.addClass('park-name title divider is-size-5 has-text-centered')
       parkNameDiv.addClass('card-content');
       parkNameDiv.append(parkNameEl);
       parkEl.append(parkNameDiv);
 
       parkDescEl.text(parkDesc);
-      parkDescEl.addClass('park-desc title is-size-5 has-text-centered')
+      parkDescEl.addClass('park-desc title is-size-5 has-text-centered text-styles')
       parkDescDiv.addClass('card-content');
       parkDescDiv.append(parkDescEl);
       parkEl.append(parkDescDiv);

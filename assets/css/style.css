@@ -31,3 +31,7 @@ html {
   display: flex;
   margin: auto;
 }
+
+.text-styles{
+  color: aqua;
+}
