@@ -1,0 +1,39 @@
+html { 
+  background: url("../img/yose1.png") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+.form-container{
+  margin: 20px;
+  max-width: 1000px;
+  padding: 75px;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.6)
+}
+
+.search {
+  min-width: 15vh;
+}
+
+.card{
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.8);
+  background: url("../img/card-bg.png");
+  background-size: cover;
+}
+
+.column{
+  display: flex;
+  margin: auto;
+}
+
+.text-styles{
+  color: aqua;
+}
