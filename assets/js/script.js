@@ -26,33 +26,35 @@ function getParkName(){
     const html = data.data
      .map(parks => {
 
-      parkEl = $('<div>')
-      parkImgDiv = $('<div>');
-      parkImgEl = $('<img>');
-      parkNameDiv = $('<div>');
-      parkNameEl = $('<h2>');
-      parkDescDiv = $('<div>');
-      parkDescEl = $('<p>');
-      parkDescH = $('<h3>');
+      let parkEl = $('<div>')
+      let parkImgDiv = $('<div>');
+      let parkImgEl = $('<img>');
+      let parkNameDiv = $('<div>');
+      let parkNameEl = $('<h2>');
+      let parkDescDiv = $('<div>');
+      let parkDescEl = $('<p>');
+      let parkDescH = $('<h3>');
 
-      parkHoursDiv = $('<div>')
-      parkHoursEl = $('<ul>');
-      parkHoursH = $('<h3>');
+      let parkHoursDiv = $('<div>')
+      let parkHoursEl = $('<ul>');
+      let parkHoursH = $('<h3>');
 
-      parkContactDiv = $('<div>')
-      parkContactH = $('<h3>');
-      parkContactEl = $('<ul>')
-      parkPhoneEl = $('<li>')
-      parkWebEl = $('<li>')
-      parkWebAnchor = $('<a>');
+      let parkContactDiv = $('<div>')
+      let parkContactH = $('<h3>');
+      let parkContactEl = $('<ul>')
+      let parkPhoneEl = $('<li>')
+      let parkWebEl = $('<li>')
+      let parkWebAnchor = $('<a>');
 
-      mon = $('<li>');
-      tue = $('<li>');
-      wed = $('<li>');
-      thu = $('<li>');
-      fri = $('<li>');
-      sat = $('<li>');
-      sun = $('<li>');
+      let weatherDiv = $('<div>');
+
+      let mon = $('<li>');
+      let tue = $('<li>');
+      let wed = $('<li>');
+      let thu = $('<li>');
+      let fri = $('<li>');
+      let sat = $('<li>');
+      let sun = $('<li>');
       
       parkImg = parks.images[0].url;
       parkImgAlt = parks.images[0].altText;
@@ -69,6 +71,7 @@ function getParkName(){
 
       //append data to elements
 
+      //Append Image to ParkEl
       parkImgEl.attr('src', parkImg);
       parkImgEl.addClass('park-img card-image has-text-centered px-6 mt-6')
       parkImgEl.attr('alt', parkImgAlt)
@@ -76,12 +79,14 @@ function getParkName(){
       parkImgDiv.append(parkImgEl);
       parkEl.append(parkImgDiv);
 
+      //Append ParkName to ParkEl
       parkNameEl.text(parkName);
       parkNameEl.addClass('park-name title is-size-5 has-text-centered')
       parkNameDiv.addClass('card-content');
       parkNameDiv.append(parkNameEl);
       parkEl.append(parkNameDiv);
 
+      //Append Desc to ParkEl
       parkDescH.text('Description');
       parkDescDiv.append(parkDescH);
       parkDescEl.text(parkDesc);
@@ -90,6 +95,7 @@ function getParkName(){
       parkDescDiv.append(parkDescEl);
       parkEl.append(parkDescDiv);
 
+      //Append Hours to ParkEl
       parkHoursH.text('Hours:');
       parkHoursEl.addClass('hours title is-size-5')
       parkHoursDiv.addClass('card-content');
@@ -97,21 +103,6 @@ function getParkName(){
       parkHoursDiv.append(parkHoursEl);
       parkEl.append(parkHoursDiv);
 
-      parkContactH.text('Contact Info:');
-      parkPhoneEl.text(`Phone: ${parkPhone}`);
-      parkWebAnchor.text(`More Info`);
-      parkContactEl.addClass('contact-info title is-size-5')
-      parkContactDiv.addClass('card-content');
-      parkWebAnchor.attr('href',parkWeb);
-      parkWebAnchor.attr('target', '_blank');
-      parkContactDiv.append(parkContactH);
-      parkContactEl.append(parkPhoneEl);
-      
-      parkWebEl.append(parkWebAnchor);
-      parkContactEl.append(parkWebEl);
-      parkContactDiv.append(parkContactEl);
-      parkEl.append(parkContactDiv);
-      
       mon.text(`Monday: ${monday}`);
       parkHoursEl.append(mon);
 
@@ -133,15 +124,32 @@ function getParkName(){
       sun.text(`Sunday: ${sunday}`);
       parkHoursEl.append(sun);
 
+      //Append ContactInfo to ParkEl
+      parkContactH.text('Contact Info:');
+      parkPhoneEl.text(`Phone: ${parkPhone}`);
+      parkWebAnchor.text(`More Info`);
+      parkContactEl.addClass('contact-info title is-size-5')
+      parkContactDiv.addClass('card-content');
+      parkWebAnchor.attr('href',parkWeb);
+      parkWebAnchor.attr('target', '_blank');
+      parkContactDiv.append(parkContactH);
+      parkContactEl.append(parkPhoneEl);
+      
+      parkWebEl.append(parkWebAnchor);
+      parkContactEl.append(parkWebEl);
+      parkContactDiv.append(parkContactEl);
+      parkEl.append(parkContactDiv);
+
+      //append Weather to ParkEl
+      weatherDiv.addClass('park-weather')
+      parkEl.append(weatherDiv);
+
+      getWeather(parklat, parklon);
+
+      //Append ParkEl to allPark Div
       parkEl.addClass('park-container card')
       allParks.append(parkEl);
 
-      console.log(parkImg);
-      console.log(parkName);
-      console.log(parkDesc);
-      console.log(parkHours);
-      console.log(parklat);
-      console.log(parklon);
     })
     .join("")
   console.log(html);  
@@ -155,4 +163,21 @@ function getParkName(){
   $("#park-name").text("")
 }  
 
-getParkName();
+var getForecast = function(lat, lon) {
+
+  var oneCallApi = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=43a284bcc0758c5a0b96ec7c9d233494`
+  
+  console.log(oneCallApi);
+  fetch(oneCallApi)
+  .then(function(response) {
+        if (response.ok) {
+            return response.json();          
+        }
+
+    })
+
+    .then(function(data) {
+
+
+    })
+}
