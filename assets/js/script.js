@@ -26,10 +26,14 @@ function getParkName(){
     const html = data.data
      .map(parks => {
 
-      parkEl = $('<li>')
+      parkEl = $('<div>')
+      parkImgDiv = $('<div>');
       parkImgEl = $('<img>');
+      parkNameDiv = $('<div>');
       parkNameEl = $('<h2>');
+      parkDescDiv = $('<div>');
       parkDescEl = $('<p>');
+      parkHoursDiv = $('<div>')
       parkHoursEl = $('<ul>');
       mon = $('<li>');
       tue = $('<li>');
@@ -53,20 +57,28 @@ function getParkName(){
       //append data to elements
 
       parkImgEl.attr('src', parkImg);
-      parkImgEl.addClass('park-img')
+      parkImgEl.addClass('park-img card-image has-text-centered px-6 mt-6')
       parkImgEl.attr('alt', parkImgAlt)
-      parkEl.append(parkImgEl);
+      parkImgDiv.addClass('card-image has-text-centered px-6 mt-6');
+      parkImgDiv.append(parkImgEl);
+      parkEl.append(parkImgDiv);
 
       parkNameEl.text(parkName);
-      parkNameEl.addClass('park-name')
-      parkEl.append(parkNameEl);
+      parkNameEl.addClass('park-name title is-size-5 has-text-centered')
+      parkNameDiv.addClass('card-content');
+      parkNameDiv.append(parkNameEl);
+      parkEl.append(parkNameDiv);
 
       parkDescEl.text(parkDesc);
-      parkDescEl.addClass('park-desc')
-      parkEl.append(parkDescEl);
+      parkDescEl.addClass('park-desc title is-size-5 has-text-centered')
+      parkDescDiv.addClass('card-content');
+      parkDescDiv.append(parkDescEl);
+      parkEl.append(parkDescDiv);
 
-      parkHoursEl.addClass('hours')
-      parkEl.append(parkHoursEl);
+      parkHoursEl.addClass('hours title is-size-5')
+      parkHoursDiv.addClass('card-content');
+      parkHoursDiv.append(parkHoursEl);
+      parkEl.append(parkHoursDiv);
       
       mon.text(`Monday: ${monday}`);
       parkHoursEl.append(mon);
@@ -89,7 +101,7 @@ function getParkName(){
       sun.text(`Sunday: ${sunday}`);
       parkHoursEl.append(sun);
 
-      parkEl.addClass('park-container')
+      parkEl.addClass('park-container card')
       allParks.append(parkEl);
 
       console.log(parkImg);
@@ -104,7 +116,7 @@ function getParkName(){
   document.getElementById("parkNames").insertAdjacentHTML("afterbegin", html);  
   })  
   .catch(error =>{
-      console.log(error);
+      // console.log(error);
       // console.log(data);
      });   
      
