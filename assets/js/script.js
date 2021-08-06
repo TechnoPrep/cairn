@@ -5,9 +5,15 @@ let allParks = $('#parkNames');
 function getParkName(){
 
   let queryString = document.location.search;
-  let stateCode = queryString.split('=');
+  let stateCode = queryString.split('=')[1];
 
- fetch(`https://developer.nps.gov/api/v1/parks?api_key=${apiKey}&stateCode=&${stateCode}`)
+  console.log(stateCode);
+
+  let fetchURL = `https://developer.nps.gov/api/v1/parks?stateCode=&${stateCode}&q=${stateCode}&api_key=${apiKey}`
+
+  console.log(fetchURL);
+
+ fetch(fetchURL)
   .then(response => { 
     if (!response.ok){
       throw Error("Error");
