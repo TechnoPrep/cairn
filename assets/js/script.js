@@ -77,29 +77,31 @@ function getParkName(){
       parkImgEl.attr('src', parkImg);
       parkImgEl.addClass('park-img card-image has-text-centered px-6 mt-6')
       parkImgEl.attr('alt', parkImgAlt)
-      parkImgDiv.addClass('card-image has-text-centered px-6 mt-6');
+      parkImgDiv.addClass('card-image image is-2by1 has-text-centered px-6 mb-5');
       parkImgDiv.append(parkImgEl);
       parkEl.append(parkImgDiv);
 
       //Append ParkName to ParkEl
       parkNameEl.text(parkName);
-      parkNameEl.addClass('park-name title is-size-5 has-text-centered')
+      parkNameEl.addClass('park-name title divider is-size-5 has-text-centered')
       parkNameDiv.addClass('card-content');
       parkNameDiv.append(parkNameEl);
       parkEl.append(parkNameDiv);
 
       //Append Desc to ParkEl
       parkDescH.text('Description');
+      parkDescH.addClass("is-size-2 has-text-weight-semibold")
       parkDescDiv.append(parkDescH);
       parkDescEl.text(parkDesc);
-      parkDescEl.addClass('park-desc title is-size-5 has-text-centered')
+      parkDescEl.addClass('park-desc title is-size-5 has-text-grey')
       parkDescDiv.addClass('card-content');
       parkDescDiv.append(parkDescEl);
       parkEl.append(parkDescDiv);
 
       //Append Hours to ParkEl
       parkHoursH.text('Hours:');
-      parkHoursEl.addClass('hours title is-size-5')
+      parkHoursH.addClass("is-size-2 has-text-weight-semibold")
+      parkHoursEl.addClass('hours title is-size-5 has-text-grey')
       parkHoursDiv.addClass('card-content');
       parkHoursDiv.append(parkHoursH);
       parkHoursDiv.append(parkHoursEl);
@@ -127,10 +129,11 @@ function getParkName(){
       parkHoursEl.append(sun);
 
       //Append ContactInfo to ParkEl
-      parkContactH.text('Contact Info:');
+      parkContactH.text('Contact Info');
+      parkContactH.addClass('divider is-size-6')
       parkPhoneEl.text(`Phone: ${parkPhone}`);
       parkWebAnchor.text(`More Info`);
-      parkContactEl.addClass('contact-info title is-size-5')
+      parkContactEl.addClass('contact-info title is-size-6 has-text-centered')
       parkContactDiv.addClass('card-content');
       parkWebAnchor.attr('href',parkWeb);
       parkWebAnchor.attr('target', '_blank');
