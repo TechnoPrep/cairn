@@ -46,6 +46,8 @@ function getParkName(){
       parkWebEl = $('<li>')
       parkWebAnchor = $('<a>');
 
+  
+
       mon = $('<li>');
       tue = $('<li>');
       wed = $('<li>');
@@ -83,24 +85,27 @@ function getParkName(){
       parkEl.append(parkNameDiv);
 
       parkDescH.text('Description');
+      parkDescH.addClass("is-size-2 has-text-weight-semibold")
       parkDescDiv.append(parkDescH);
       parkDescEl.text(parkDesc);
-      parkDescEl.addClass('park-desc title is-size-5 has-text-centered text-styles')
+      parkDescEl.addClass('park-desc title is-size-5 has-text-grey')
       parkDescDiv.addClass('card-content');
       parkDescDiv.append(parkDescEl);
       parkEl.append(parkDescDiv);
 
       parkHoursH.text('Hours:');
-      parkHoursEl.addClass('hours title is-size-5')
+      parkHoursH.addClass("is-size-2 has-text-weight-semibold")
+      parkHoursEl.addClass('hours title is-size-5 has-text-grey')
       parkHoursDiv.addClass('card-content');
       parkHoursDiv.append(parkHoursH);
       parkHoursDiv.append(parkHoursEl);
       parkEl.append(parkHoursDiv);
 
-      parkContactH.text('Contact Info:');
+      parkContactH.text('Contact Info');
+      parkContactH.addClass('divider is-size-6')
       parkPhoneEl.text(`Phone: ${parkPhone}`);
       parkWebAnchor.text(`More Info`);
-      parkContactEl.addClass('contact-info title is-size-5')
+      parkContactEl.addClass('contact-info title is-size-6 has-text-centered')
       parkContactDiv.addClass('card-content');
       parkWebAnchor.attr('href',parkWeb);
       parkWebAnchor.attr('target', '_blank');
