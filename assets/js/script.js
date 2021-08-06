@@ -163,3 +163,21 @@ function getParkName(){
   $("#park-name").text("")
 }  
 
+var getForecast = function(lat, lon) {
+
+  var oneCallApi = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=43a284bcc0758c5a0b96ec7c9d233494`
+  
+  console.log(oneCallApi);
+  fetch(oneCallApi)
+  .then(function(response) {
+        if (response.ok) {
+            return response.json();          
+        }
+
+    })
+
+    .then(function(data) {
+
+
+    })
+}
