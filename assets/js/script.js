@@ -100,7 +100,9 @@ function getParkName(){
   .catch(error =>{
       console.log(error);
       // console.log(data);
-     });    
+     });   
+     
+  $("#park-name").text("")
 }  
 
 getParkName();
