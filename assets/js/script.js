@@ -26,35 +26,37 @@ function getParkName(){
     const html = data.data
      .map(parks => {
 
-      let parkEl = $('<div>')
-      let parkImgDiv = $('<div>');
-      let parkImgEl = $('<img>');
-      let parkNameDiv = $('<div>');
-      let parkNameEl = $('<h2>');
-      let parkDescDiv = $('<div>');
-      let parkDescEl = $('<p>');
-      let parkDescH = $('<h3>');
+      parkEl = $('<div>')
+      parkImgDiv = $('<div>');
+      parkImgEl = $('<img>');
+      parkNameDiv = $('<div>');
+      parkNameEl = $('<h2>');
 
-      let parkHoursDiv = $('<div>')
-      let parkHoursEl = $('<ul>');
-      let parkHoursH = $('<h3>');
+      parkDescDiv = $('<div>');
+      parkDescEl = $('<p>');
+      parkDescH = $('<h3>');
 
-      let parkContactDiv = $('<div>')
-      let parkContactH = $('<h3>');
-      let parkContactEl = $('<ul>')
-      let parkPhoneEl = $('<li>')
-      let parkWebEl = $('<li>')
-      let parkWebAnchor = $('<a>');
+      parkHoursDiv = $('<div>')
+      parkHoursEl = $('<ul>');
+      parkHoursH = $('<h3>');
 
-      let weatherDiv = $('<div>');
+      parkContactDiv = $('<div>')
+      parkContactH = $('<h3>');
+      parkContactEl = $('<ul>')
+      parkPhoneEl = $('<li>')
+      parkWebEl = $('<li>')
+      parkWebAnchor = $('<a>');
 
-      let mon = $('<li>');
-      let tue = $('<li>');
-      let wed = $('<li>');
-      let thu = $('<li>');
-      let fri = $('<li>');
-      let sat = $('<li>');
-      let sun = $('<li>');
+       weatherDiv = $('<div>');
+       weatherTest = $('<p>');
+
+      mon = $('<li>');
+      tue = $('<li>');
+      wed = $('<li>');
+      thu = $('<li>');
+      fri = $('<li>');
+      sat = $('<li>');
+      sun = $('<li>');
       
       parkImg = parks.images[0].url;
       parkImgAlt = parks.images[0].altText;
@@ -141,10 +143,13 @@ function getParkName(){
       parkEl.append(parkContactDiv);
 
       //append Weather to ParkEl
+      
+      weatherTest.text('test weather');
       weatherDiv.addClass('park-weather')
+      weatherDiv.append(weatherTest);
       parkEl.append(weatherDiv);
 
-      getWeather(parklat, parklon);
+      getForecast(parklat, parklon);
 
       //Append ParkEl to allPark Div
       parkEl.addClass('park-container card')
@@ -163,7 +168,9 @@ function getParkName(){
   $("#park-name").text("")
 }  
 
-var getForecast = function(lat, lon) {
+getParkName()
+
+function getForecast(lat, lon) {
 
   var oneCallApi = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=43a284bcc0758c5a0b96ec7c9d233494`
   
