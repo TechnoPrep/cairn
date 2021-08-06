@@ -129,6 +129,7 @@ function getParkName(){
 
       getForecast(parklat, parklon);
 
+
       //Append ParkEl to allPark Div
       parkEl.addClass('park-container card')
       allParks.append(parkEl);
@@ -148,7 +149,7 @@ function getParkName(){
 
 getParkName()
 
-function getForecast(lat, lon) {
+var getForecast = function(lat, lon) {
 
   var oneCallApi = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=43a284bcc0758c5a0b96ec7c9d233494`
   
@@ -163,6 +164,86 @@ function getForecast(lat, lon) {
 
     .then(function(data) {
 
+      let weatherDiv = $('.park-weather');
+      let weatherEl = $('<ul>')
+      let tempEl = $('<li>');
+      let imgEl = $('<img>');
+      let humEl = $('<li>');
+
+      var temp = data.current.temp;
+      var iconCode = data.current.weather[0].icon;
+      var humidity = data.current.humidity;
+      let iconURL = 'http://openweathermap.org/img/wn/' + iconCode + '@2x.png'
+
+      imgEl.attr('src',iconURL);
+      tempEl.text(`${temp}°F`);
+      humidity
 
     })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function call1 () => {
+//   fetch(api1)
+// }.then(() => {
+//   fetch(api2)
+// })
+
+// //--------------------------------------
+
+
+// function call1() {
+//   fetch(api1)
+
+// }
+
+// async function call2(){
+//   global vars
+//   await call1()
+//   await fetch(api2)
+//   more stuff
+
+// }
