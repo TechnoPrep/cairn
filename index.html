@@ -54,17 +54,16 @@
 
       <section class="hero is-fullheight-with-navbar">
         <div class="hero-body container">
-          <div class="form-container">
-            <div class="field has-addons">
+          <div class="form-container has-">
+            
+            <div class="field">
                 <div class="control search">
                   <input class="input" type="text" placeholder="Name of Park">
                 </div>
-                <div class="control">
-                  <button id='search' class="button is-info">
-                    Search
-                  </button>
-                </div>
-                <div class="control has-icons-left">
+            </div>
+
+            <div class="field">
+                <div class="control has-icons-left has-text-centered">
                     <div class="select">
                       <select id="state">
                         <option selected>State</option>
@@ -124,26 +123,50 @@
                       <i class="fas fa-globe"></i>
                     </span>
                   </div>
-                <label class="checkbox">
-                    <input type="checkbox">
-                    Weather
-                  </label>
+            </div>
+
+              <div class="field">
+                <div class="control">
                   <label class="checkbox">
-                    <input type="checkbox">
-                    Camping
-                  </label>
-                  <label class="checkbox">
-                    <input type="checkbox">
-                    Fees
-                  </label>
-                  <label class="checkbox">
-                    <input type="checkbox">
-                    Hours of Operation
-                  </label>
+                      <input type="checkbox">
+                      Weather
+                    </label>
+                </div>
               </div>
+
+              <div class="field">
+                  <label class="checkbox">
+                    <input type="checkbox">
+                    <sapn>Camping</sapn>
+                  </label>
+                </div>
+
+                <div class="field">
+                  <label class="checkbox">
+                    <input type="checkbox">
+                    <span>Fees</span>
+                  </label>
+                </div>
+
+                <div class="field">
+                  <label class="checkbox">
+                    <input type="checkbox">
+                    <span>Hours of Operation</span>
+                  </label>
+                </div>
+
+                
+                  <div class="control p-6 has-text-centered">
+                    <button id='search' class="button is-info">
+                      Search
+                    </button>
+                  </div>
+                
+              
           </div>
         </div>
       </section>
+      
 
       
       
@@ -155,4 +178,3 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>
-
