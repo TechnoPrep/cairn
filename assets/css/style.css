@@ -33,3 +33,23 @@ html {
     display: flex;
     margin: auto;
 }
+
+.uvi-low{
+    background-color: green;
+}
+
+.uvi-moderate{
+    background-color: yellow;
+}
+
+.uvi-high{
+    background-color: orange;
+}
+
+.uvi-vhigh{
+    background-color: red;
+}
+
+.uvi-extreme{
+    background-color: violet;
+}
