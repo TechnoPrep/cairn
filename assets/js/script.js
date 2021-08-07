@@ -2,8 +2,6 @@ const apiKey ="hrzeZivocJeVP942upjoq1HS5TL5d1mRUZmDQ64t"
 
 let allParks = $('#parkNames');
 
-console.log('I got here');
-
 async function getParkName(){
 
   let queryString = document.location.search;
@@ -116,7 +114,7 @@ async function getParkName(){
       })
 
     })
-    .join("")
+    // .join("")
   })
   
   .catch(error =>{
