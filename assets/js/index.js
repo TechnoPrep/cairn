@@ -10,7 +10,6 @@ $('#search').click(function (e) {
      
        $(window).attr('location', `results.html?state=${stateCode}`);
     }
-
 });
 
 $(document).ready(function () {
@@ -67,3 +66,4 @@ function displayPrevState(){
 }
 
 displayPrevState();
+
