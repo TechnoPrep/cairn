@@ -57,7 +57,10 @@ function displayPrevState(){
    if(tempArr !== null){
        for (let i = 0; i < tempArr.length; i++) {
 
-         let preStateBtn = `<button value="${tempArr[i].Code}" type="button" class="custom-state-btn">${tempArr[i].Name}</button>`         
+         let preStateBtn = 
+         `<li>
+         <button value="${tempArr[i].Code}" type="button" class="button custom-state-btn">${tempArr[i].Name}</button>
+         </li>`         
 
          prevStateEl.append(preStateBtn);
        }
