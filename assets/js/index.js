@@ -37,15 +37,11 @@ function addToLocal(stateCode, stateName){
 
    stateArr.push(stateInfo);
 
-   // let uniqueState = stateArr.filter((v,i,a)=>a.findIndex(t=>(t.Code === v.Code))===i);
-
-      let uniqueState = stateArr.filter((value,index,array)=>{
-         return array.findIndex(truthy=>{
-            return truthy.Code === value.Code
-         }) === index
-      })
-
-   // let uniqueState = [...new Set(stateArr)];
+   let uniqueState = stateArr.filter((value,index,array)=>{
+      return array.findIndex(truthy=>{
+         return truthy.Code === value.Code
+      }) === index
+   })
 
    localStorage.setItem('previousSelection', JSON.stringify(uniqueState));
 
