@@ -44,11 +44,16 @@ async function getParkName(){
 
       const weatherData = getForecast(parklat, parklon).then(data=>{
 
-        let temp = data.current.temp;
-        let iconCode = data.current.weather[0].icon;
-        let iconAlt = data.current.weather[0].description;
+        let currTemp = data.current.temp;
+        let feelLike = data.current.feels_like;
+        let highTemp = data.daily[0].temp.max;
+        let lowTemp = data.daily[0].temp.min;
         let wind = data.current.wind_speed;
         let humidity = data.current.humidity;
+        let uvi = data.current.uvi;
+        let uviClass = uvIndex(uvi);
+        let iconCode = data.current.weather[0].icon;
+        let iconAlt = data.current.weather[0].description;
         let iconURL = 'https://openweathermap.org/img/wn/' + iconCode + '@2x.png';
 
         parkCardEl = 
@@ -83,23 +88,18 @@ async function getParkName(){
           <li>Sunday: ${sunday}</li>
         </ul>
         <div class="weather-card card column is-offset-3 mr-4">
-              <div class="column">
-                <h3 class="is-size-2 has-text-weight-semibold">City Name:</h3>
-              </div>
               <div class="row is-4">
                 <ul class="hours title is-size-5 has-text-grey ml-4">
                   <img src="${iconURL}" alt="${iconAlt}">
-                  <li>Current Temperature: <span id="current-temp"></span> &deg;F</li>
-                  <li>Feels Like: <span id="current-feels-like"></span> &deg;F</li>
-                  <li>Humidity: <span id="current-humidity"></span>%</li>
-                  <li>High: <span id="current-high"></span> &deg;F</li>
-                  <li>Low: <span id="current-low"></span> &deg;F</li>
-                  <li>Wind Speed: <span id="current-wind-speed"></span> MPH</li>
-                  <li>UV Index: <span id="current-uvi"></span></li>
+                  <li>Current Temperature: <span id="current-temp">${currTemp}</span> &deg;F</li>
+                  <li>Feels Like: <span id="current-feels-like">${feelLike}</span> &deg;F</li>
+                  <li>Humidity: <span id="current-humidity">${humidity}</span>%</li>
+                  <li>High: <span id="current-high">${highTemp}</span> &deg;F</li>
+                  <li>Low: <span id="current-low">${lowTemp}</span> &deg;F</li>
+                  <li>Wind Speed: <span id="current-wind-speed">${wind}</span> MPH</li>
+                  <li>UV Index: <span class="${uviClass}" id="current-uvi">${uvi}</span></li>
               </div>
-              
            </div>
-  
       </div>
         <div class="card-content">
           <h3 class="divider is-size-6">Contact Info</h3>
@@ -145,6 +145,25 @@ var getForecast = function(lat, lon) {
       return data;
 
     })
+}
+
+function uvIndex(uvi){
+
+  if(uvi < 3){
+    return 'uvi-low';
+  
+  }else if(uvi < 6 && uvi > 3){
+      return 'uvi-moderate';
+  
+  } else if(uvi < 8 && uvi > 5){
+    return 'uvi-high';
+
+  }  else if(uvi < 11 && uvi > 7){
+    return 'uvi-vhigh';
+
+  } else {
+    return 'uvi-extreme';
+  }
 }
 
 getParkName();
