@@ -25,38 +25,6 @@ function getParkName(){
     console.log(data.data);
     const html = data.data
      .map(parks => {
-
-      parkEl = $('<div>')
-      parkImgDiv = $('<div>');
-      parkImgEl = $('<img>');
-      parkNameDiv = $('<div>');
-      parkNameEl = $('<h2>');
-
-      parkDescDiv = $('<div>');
-      parkDescEl = $('<p>');
-      parkDescH = $('<h3>');
-
-      parkHoursDiv = $('<div>')
-      parkHoursEl = $('<ul>');
-      parkHoursH = $('<h3>');
-
-      parkContactDiv = $('<div>')
-      parkContactH = $('<h3>');
-      parkContactEl = $('<ul>')
-      parkPhoneEl = $('<li>')
-      parkWebEl = $('<li>')
-      parkWebAnchor = $('<a>');
-
-       weatherDiv = $('<div>');
-       weatherTest = $('<p>');
-
-      mon = $('<li>');
-      tue = $('<li>');
-      wed = $('<li>');
-      thu = $('<li>');
-      fri = $('<li>');
-      sat = $('<li>');
-      sun = $('<li>');
       
       parkImg = parks.images[0].url;
       parkImgAlt = parks.images[0].altText;
@@ -73,91 +41,52 @@ function getParkName(){
 
       //append data to elements
 
-      //Append Image to ParkEl
-      parkImgEl.attr('src', parkImg);
-      parkImgEl.addClass('park-img card-image has-text-centered px-6 mt-6')
-      parkImgEl.attr('alt', parkImgAlt)
-      parkImgDiv.addClass('card-image image is-2by1 has-text-centered px-6 mb-5');
-      parkImgDiv.append(parkImgEl);
-      parkEl.append(parkImgDiv);
+      parkCardEl = `<div class="park-container card">
+      <div class="card-image image is-2by1 has-text-centered px-6 mb-5">
+        <img
+          src="${parkImg}"
+          class="park-img card-image has-text-centered px-6 mt-6"
+          alt="${parkImgAlt}"
+        />
+      </div>
+      <div class="card-content">
+        <h2 class="park-name title divider is-size-5 has-text-centered">
+          ${parkName}
+        </h2>
+      </div>
+      <div class="card-content">
+        <h3 class="is-size-2 has-text-weight-semibold">Description</h3>
+        <p class="park-desc title is-size-5 has-text-grey">
+          ${parkDesc}
+        </p>
+      </div>
+      <div class="card-content">
+        <h3 class="is-size-2 has-text-weight-semibold">Hours:</h3>
+        <ul class="hours title is-size-5 has-text-grey">
+          <li>Monday: ${monday}</li>
+          <li>Tuesday: ${tuesday}</li>
+          <li>Wednesday: ${wednesday}</li>
+          <li>Thursday: ${thursday}</li>
+          <li>Friday: ${friday}</li>
+          <li>Saturday: ${saturday}</li>
+          <li>Sunday: ${sunday}</li>
+        </ul>
+      </div>
+      <div class="card-content">
+        <h3 class="divider is-size-6">Contact Info</h3>
+        <ul class="contact-info title is-size-6 has-text-centered">
+          <li>Phone: ${parkPhone}</li>
+          <li>
+            <a href="${parkWeb}" target="_blank"
+              >More Info</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="park-weather"><p>test weather</p></div>
+    </div>`
 
-      //Append ParkName to ParkEl
-      parkNameEl.text(parkName);
-      parkNameEl.addClass('park-name title divider is-size-5 has-text-centered')
-      parkNameDiv.addClass('card-content');
-      parkNameDiv.append(parkNameEl);
-      parkEl.append(parkNameDiv);
-
-      //Append Desc to ParkEl
-      parkDescH.text('Description');
-      parkDescH.addClass("is-size-2 has-text-weight-semibold")
-      parkDescDiv.append(parkDescH);
-      parkDescEl.text(parkDesc);
-      parkDescEl.addClass('park-desc title is-size-5 has-text-grey')
-      parkDescDiv.addClass('card-content');
-      parkDescDiv.append(parkDescEl);
-      parkEl.append(parkDescDiv);
-
-      //Append Hours to ParkEl
-      parkHoursH.text('Hours:');
-      parkHoursH.addClass("is-size-2 has-text-weight-semibold")
-      parkHoursEl.addClass('hours title is-size-5 has-text-grey')
-      parkHoursDiv.addClass('card-content');
-      parkHoursDiv.append(parkHoursH);
-      parkHoursDiv.append(parkHoursEl);
-      parkEl.append(parkHoursDiv);
-
-      mon.text(`Monday: ${monday}`);
-      parkHoursEl.append(mon);
-
-      tue.text(`Tuesday: ${tuesday}`);
-      parkHoursEl.append(tue);
-
-      wed.text(`Wednesday: ${wednesday}`);
-      parkHoursEl.append(wed);
-
-      thu.text(`Thursday: ${thursday}`);
-      parkHoursEl.append(thu);
-
-      fri.text(`Friday: ${friday}`);
-      parkHoursEl.append(fri);
-
-      sat.text(`Saturday: ${saturday}`);
-      parkHoursEl.append(sat);
-
-      sun.text(`Sunday: ${sunday}`);
-      parkHoursEl.append(sun);
-
-      //Append ContactInfo to ParkEl
-      parkContactH.text('Contact Info');
-      parkContactH.addClass('divider is-size-6')
-      parkPhoneEl.text(`Phone: ${parkPhone}`);
-      parkWebAnchor.text(`More Info`);
-      parkContactEl.addClass('contact-info title is-size-6 has-text-centered')
-      parkContactDiv.addClass('card-content');
-      parkWebAnchor.attr('href',parkWeb);
-      parkWebAnchor.attr('target', '_blank');
-      parkContactDiv.append(parkContactH);
-      parkContactEl.append(parkPhoneEl);
-      
-      parkWebEl.append(parkWebAnchor);
-      parkContactEl.append(parkWebEl);
-      parkContactDiv.append(parkContactEl);
-      parkEl.append(parkContactDiv);
-
-      //append Weather to ParkEl
-      
-      weatherTest.text('test weather');
-      weatherDiv.addClass('park-weather')
-      weatherDiv.append(weatherTest);
-      parkEl.append(weatherDiv);
-
-      getForecast(parklat, parklon);
-
-
-      //Append ParkEl to allPark Div
-      parkEl.addClass('park-container card')
-      allParks.append(parkEl);
+      allParks.append(parkCardEl);
 
     })
     .join("")
