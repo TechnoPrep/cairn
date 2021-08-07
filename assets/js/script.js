@@ -49,7 +49,7 @@ async function getParkName(){
         let iconAlt = data.current.weather[0].description;
         let wind = data.current.wind_speed;
         let humidity = data.current.humidity;
-        let iconURL = 'http://openweathermap.org/img/wn/' + iconCode + '@2x.png';
+        let iconURL = 'https://openweathermap.org/img/wn/' + iconCode + '@2x.png';
 
         parkCardEl = 
         `<div class="park-container card">
@@ -119,7 +119,7 @@ var getForecast = function(lat, lon) {
 
   let apiKey = '1cba65d3c13edbfe6f1ac567815665c2'
 
-  var oneCallApi = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=${apiKey}`
+  var oneCallApi = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=${apiKey}`
 
   return fetch(oneCallApi)
 
