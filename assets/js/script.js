@@ -89,7 +89,7 @@ async function getParkName(){
         </ul>
         <div class="weather-card card column is-offset-3 mr-4">
               <div class="row is-4">
-                <ul class="hours title is-size-5 has-text-grey ml-4">
+                <ul class="hours title is-size-5 has-text- ml-4">
                   <img src="${iconURL}" alt="${iconAlt}">
                   <li>Current Temperature: <span id="current-temp">${currTemp}</span> &deg;F</li>
                   <li>Feels Like: <span id="current-feels-like">${feelLike}</span> &deg;F</li>

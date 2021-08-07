@@ -28,6 +28,12 @@ html {
     background: url("../img/card-bg.png");
     background-size: cover;
 }
+
+.weather-card{
+    background: url("../img/wc1.png");
+    max-width: 40vh;
+    margin: auto;
+}
   
 .column{
     display: flex;
@@ -48,6 +54,7 @@ html {
 
 .uvi-vhigh{
     background-color: red;
+    background-size: contain;
 }
 
 .uvi-extreme{
