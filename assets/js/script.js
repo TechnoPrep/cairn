@@ -1,8 +1,11 @@
-const apiKey ="hrzeZivocJeVP942upjoq1HS5TL5d1mRUZmDQ64t"
+const burgerIcon = document.querySelector("#burger");
+const navbarMenu = document.querySelector("#nav-links");
 
 let allParks = $('#parkNames');
 
 async function getParkName(){
+
+  const apiKey ="hrzeZivocJeVP942upjoq1HS5TL5d1mRUZmDQ64t"
 
   let queryString = document.location.search;
   let stateCode = queryString.split('=')[1];
@@ -125,6 +128,7 @@ async function getParkName(){
 
 var getForecast = function(lat, lon) {
 
+
   let apiKey = '1cba65d3c13edbfe6f1ac567815665c2'
 
   var oneCallApi = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=${apiKey}`
@@ -132,10 +136,17 @@ var getForecast = function(lat, lon) {
   return fetch(oneCallApi)
 
   .then(function(response) {
-        if (response.ok) {
-            return response.json();          
-        }
 
+    if(response.ok){
+        // if (response === 429) {
+        //  apiKey = ''
+
+        //   getForecast(lat, lon)
+
+        // } else{
+          return response.json(); 
+        }
+        
     })
 
     .then(function(data) {
@@ -163,6 +174,12 @@ function uvIndex(uvi){
     return 'uvi-extreme';
   }
 }
+
+//hamburger menu
+
+burgerIcon.addEventListener("click", () => {
+   navbarMenu.classList.toggle("is-active")
+})
 
 getParkName();
 
