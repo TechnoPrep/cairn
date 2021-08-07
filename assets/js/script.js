@@ -71,26 +71,36 @@ async function getParkName(){
             ${parkDesc}
           </p>
         </div>
-        <div class="card-content">
-          <h3 class="is-size-2 has-text-weight-semibold">Hours:</h3>
-          <ul class="hours title is-size-5 has-text-grey">
-            <li>Monday: ${monday}</li>
-            <li>Tuesday: ${tuesday}</li>
-            <li>Wednesday: ${wednesday}</li>
-            <li>Thursday: ${thursday}</li>
-            <li>Friday: ${friday}</li>
-            <li>Saturday: ${saturday}</li>
-            <li>Sunday: ${sunday}</li>
-          </ul>
-        </div>
-        <div class="card-content">
-          <ul>
-            <img src="${iconURL}" alt="${iconAlt}">
-            <li>Temp: <span>${temp}</span></li>
-            <li>Wind: <span>${wind} MPH</span></li>
-            <li>Humidity: <span>${humidity}%</span></li>
-          </ul>
-        </div>
+        <div class="card-content columns">
+        <ul class="hours title is-size-5 has-text-grey ml-4">
+        <h3 class="is-size-2 has-text-weight-semibold has-text-grey-dark">Hours:</h3>
+          <li>Monday: ${monday}</li>
+          <li>Tuesday: ${tuesday}</li>
+          <li>Wednesday: ${wednesday}</li>
+          <li>Thursday: ${thursday}</li>
+          <li>Friday: ${friday}</li>
+          <li>Saturday: ${saturday}</li>
+          <li>Sunday: ${sunday}</li>
+        </ul>
+        <div class="weather-card card column is-offset-3 mr-4">
+              <div class="column">
+                <h3 class="is-size-2 has-text-weight-semibold">City Name:</h3>
+              </div>
+              <div class="row is-4">
+                <ul class="hours title is-size-5 has-text-grey ml-4">
+                  <img src="${iconURL}" alt="${iconAlt}">
+                  <li>Current Temperature: <span id="current-temp"></span> &deg;F</li>
+                  <li>Feels Like: <span id="current-feels-like"></span> &deg;F</li>
+                  <li>Humidity: <span id="current-humidity"></span>%</li>
+                  <li>High: <span id="current-high"></span> &deg;F</li>
+                  <li>Low: <span id="current-low"></span> &deg;F</li>
+                  <li>Wind Speed: <span id="current-wind-speed"></span> MPH</li>
+                  <li>UV Index: <span id="current-uvi"></span></li>
+              </div>
+              
+           </div>
+  
+      </div>
         <div class="card-content">
           <h3 class="divider is-size-6">Contact Info</h3>
           <ul class="contact-info title is-size-6 has-text-centered">
