@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cairn</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.css" />
-    <link rel="stylesheet" href="./assets/css/divider.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="shortcut icon" type="image/jpg" href="./assets/img/favicon.png"/>
@@ -17,13 +16,13 @@
     />
 </head>
 <body>
-    <nav class="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <a class="navbar-item" href="./index.html">
             <img src="./assets/img/cairn.png" width="150" height="66">
           </a>
       
-          <a id='burger' role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <a role="button" class="navbar-burger" id="burger">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -32,8 +31,8 @@
       
         <div id="nav-links" class="navbar-menu">
           <div class="navbar-end">
-            <a class="navbar-item" href="./index.html">
-              Home
+            <a class="navbar-item" href="./results.html">
+              Home 
             </a>
       
             <a class="navbar-item">
@@ -46,21 +45,12 @@
               </div>
             </div>
           </div>
-      
-          
         </div>
-    </nav>        
-
-    <main>
-        <div class="parks column is-10 is-flex">
-            <div id="parkNames">
-
-            </div>
-        </div>
-    </main>
+    </nav>
     
+
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/index.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>
