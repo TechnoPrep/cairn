@@ -5,7 +5,10 @@ html {
     -o-background-size: cover;
     background-size: cover;
 }
-  
+
+p {
+    line-height: 1.5;
+  }
   
 .form-container{
     margin: 20px;
@@ -41,7 +44,12 @@ html {
 }
 
 .uvIndex{
+    line-height: 1.35;
+}
+
+.uvIndex span{
     border-radius: 5px;
+    padding: 0px 4px 0px 4px;
 }
 
 .uvi-low{
@@ -54,11 +62,11 @@ html {
 }
 
 .uvi-high{
-    background-color: orange;
+    background-color: #A56A00;
 }
 
 .uvi-vhigh{
-    background-color: red;
+    background-color: #EE0000;
     background-size: contain;
 }
 
