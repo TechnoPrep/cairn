@@ -29,6 +29,7 @@ async function getParkName(){
     const html = data.data
      .map(parks => {
       
+      let parkCode = parks.parkCode;
       let parkImg = parks.images[0].url;
       let parkImgAlt = parks.images[0].altText;
       let parkName = parks.fullName;
@@ -59,6 +60,8 @@ async function getParkName(){
 
         parkCardEl = 
         `<div class="park-container card">
+        <div>
+          <button class="favorite-btn" value="${parkCode}">Save</button>
         <div class="card-image image is-2by1 has-text-centered px-6 mb-5">
           <img
             src="${parkImg}"
@@ -98,7 +101,7 @@ async function getParkName(){
                   <li>High: <span id="current-high">${highTemp}</span> &deg;F</li>
                   <li>Low: <span id="current-low">${lowTemp}</span> &deg;F</li>
                   <li>Wind Speed: <span id="current-wind-speed">${wind}</span> MPH</li>
-                  <li>UV Index: <span class="${uviClass}" id="current-uvi">${uvi}</span></li>
+                  <li>UV Index: <span class="${uviClass} uvIndex" id="current-uvi">${uvi}</span></li>
               </div>
            </div>
       </div>
@@ -175,6 +178,33 @@ function uvIndex(uvi){
     return 'uvi-extreme';
   }
 }
+
+function saveToFav(parkCode){
+
+  let parkArr = [];
+
+  parkArr = JSON.parse(localStorage.getItem('favParks')) || [];
+
+  parkArr.push(parkCode);
+
+  let uniquePark = parkArr.filter((c, index) =>{
+    return parkArr.indexOf(c) === index;
+  });
+
+  localStorage.setItem('favParks', JSON.stringify(uniquePark));
+}
+
+$(document).ready(function () {
+    
+  $(document).on('click', '.favorite-btn', function(e){
+
+      e.preventDefault();
+      let parkCode = $(this).val();
+  
+      saveToFav(parkCode);
+  })
+
+});
 
 //hamburger menu
 
