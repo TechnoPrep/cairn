@@ -40,12 +40,17 @@ html {
     margin: auto;
 }
 
+.uvIndex{
+    border-radius: 5px;
+}
+
 .uvi-low{
     background-color: green;
 }
 
 .uvi-moderate{
     background-color: yellow;
+    color: #363636;
 }
 
 .uvi-high{
