@@ -94,7 +94,8 @@ p {
     margin-top: 3px;
 }
 
-/* html active btn style
-<button class="favorite-btn" style="color: red" value="${parkCode}">
-          <i class="fas fa-heart fa-3x hvr-icon"></i>
-          </button> */
+.custom-state-btn{
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
