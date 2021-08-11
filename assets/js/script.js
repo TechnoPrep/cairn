@@ -61,7 +61,6 @@ async function getParkName(){
         parkCardEl = 
         `<div class="park-container card">
         <div>
-          <button class="favorite-btn" value="${parkCode}">Save</button>
         <div class="card-image image is-2by1 has-text-centered px-6 mb-5">
           <img
             src="${parkImg}"
@@ -74,6 +73,9 @@ async function getParkName(){
             ${parkName}
           </h2>
         </div>
+        <button class="favorite-btn" style="color: white" value="${parkCode}" onclick="window.location.href='https://www.youtube.com/watch?v=dQw4w9WgXcQ';">
+          <i class="far fa-heart fa-3x"></i>
+          </button>
         <div class="card-content">
           <h3 class="is-size-2 has-text-weight-semibold">Description</h3>
           <p class="park-desc title is-size-5 has-text-grey">
