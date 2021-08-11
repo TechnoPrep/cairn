@@ -98,7 +98,7 @@ async function getParkName(){
           <li>Saturday: ${saturday}</li>
           <li>Sunday: ${sunday}</li>
         </ul>
-        <div class="weather-card card column is-offset-3 mr-4">
+        <div class="weather-card card column is-offset-4 mr-6">
               <div class="row is-4">
                 <ul class="hours title is-size-5 has-text-white ml-4">
                   <img src="${iconURL}" alt="${iconAlt}">
