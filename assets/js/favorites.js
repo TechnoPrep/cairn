@@ -144,8 +144,10 @@ async function displayFavParks(favParks){
 //Return data from Fetch Request to be used in the displayFavParks() function
 function getForecast(lat, lon) {
 
-    let apiKey = 'ff95b92cc0caa7113edde4310fba7af9' //Burner
-    // let apiKey = '1cba65d3c13edbfe6f1ac567815665c2' //Tommy's
+  // let apiKey = 'ff95b92cc0caa7113edde4310fba7af9' //Burner
+  // let apiKey = '1cba65d3c13edbfe6f1ac567815665c2' //Erics
+  let apiKey = '43a284bcc0758c5a0b96ec7c9d233494' //Nathans
+  // let apiKey = 'f61c81c8ff417a9c362b860a132e5c83' //Tommy's
 
     //Create FetchURL to be used in the displayFavParks() function
     var oneCallApi = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=${apiKey}`
