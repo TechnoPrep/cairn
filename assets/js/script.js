@@ -95,13 +95,13 @@ async function getParkName(){
               <div class="row is-4">
                 <ul class="hours title is-size-5 has-text-white ml-4">
                   <img src="${iconURL}" alt="${iconAlt}">
-                  <li>Current Temperature: <span id="current-temp">${currTemp}</span> &deg;F</li>
-                  <li>Feels Like: <span id="current-feels-like">${feelLike}</span> &deg;F</li>
-                  <li>Humidity: <span id="current-humidity">${humidity}</span>%</li>
-                  <li>High: <span id="current-high">${highTemp}</span> &deg;F</li>
-                  <li>Low: <span id="current-low">${lowTemp}</span> &deg;F</li>
-                  <li>Wind Speed: <span id="current-wind-speed">${wind}</span> MPH</li>
-                  <li>UV Index: <span class="${uviClass} uvIndex" id="current-uvi">${uvi}</span></li>
+                  <li>Current Temperature: <span class="current-temp">${currTemp}</span> &deg;F</li>
+                  <li>Feels Like: <span class="current-feels-like">${feelLike}</span> &deg;F</li>
+                  <li>Humidity: <span class="current-humidity">${humidity}</span>%</li>
+                  <li>High: <span class="current-high">${highTemp}</span> &deg;F</li>
+                  <li>Low: <span class="current-low">${lowTemp}</span> &deg;F</li>
+                  <li>Wind Speed: <span class="current-wind-speed">${wind}</span> MPH</li>
+                  <li class="uvIndex">UV Index: <span class="${uviClass}" id="current-uvi">${uvi}</span></li>
               </div>
            </div>
       </div>
@@ -132,9 +132,10 @@ async function getParkName(){
 var getForecast = function(lat, lon) {
 
 
-  // let apiKey = '1cba65d3c13edbfe6f1ac567815665c2' Erics
-  let apiKey = '43a284bcc0758c5a0b96ec7c9d233494' Nathans
-  // let apiKey = 'f61c81c8ff417a9c362b860a132e5c83' //Tommy's
+  // let apiKey = '1cba65d3c13edbfe6f1ac567815665c2' //Erics
+  let apiKey = '43a284bcc0758c5a0b96ec7c9d233494' //Nathans
+    // let apiKey = 'f61c81c8ff417a9c362b860a132e5c83' //Tommy's
+  
   var oneCallApi = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=${apiKey}`
 
   return fetch(oneCallApi)

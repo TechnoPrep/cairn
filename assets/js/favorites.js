@@ -111,7 +111,7 @@ async function displayFavParks(favParks){
                   <li>High: <span id="current-high">${highTemp}</span> &deg;F</li>
                   <li>Low: <span id="current-low">${lowTemp}</span> &deg;F</li>
                   <li>Wind Speed: <span id="current-wind-speed">${wind}</span> MPH</li>
-                  <li>UV Index: <span class="${uviClass} uvIndex" id="current-uvi">${uvi}</span></li>
+                  <li class="uvIndex">UV Index: <span class="${uviClass}">${uvi}</span></li>
               </div>
            </div>
       </div>
