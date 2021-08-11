@@ -41,6 +41,10 @@ async function getParkName(){
       let parklat = parks.latitude;
       let parklon = parks.longitude;
 
+      favParksArr = JSON.parse(localStorage.getItem('favParks')) || [];
+      let favParkColor = favParksArr.includes(parkID) ? 'red' : 'white';
+      let favHeart = favParksArr.includes(parkID) ? 'fas' : 'far';
+
       const {monday,tuesday,wednesday,thursday,friday,saturday,sunday} = parkHours
 
       //append data to elements
@@ -74,9 +78,9 @@ async function getParkName(){
             ${parkName}
           </h2>
         </div>
-        <button class="favorite-btn" style="color: white" value="${parkCode}" onclick=href="./favorites.html">
-          <i class="far fa-heart fa-3x"></i>
-          </button>
+        <button class="favorite-btn" style="color: ${favParkColor}" value="${parkCode}";">
+          <i class="${favHeart} fa-heart fa-3x"></i>
+        </button>
         <div class="card-content">
           <h3 class="is-size-2 has-text-weight-semibold">Description</h3>
           <p class="park-desc title is-size-5 has-text-grey">
@@ -120,6 +124,10 @@ async function getParkName(){
       </div>`
   
       allParks.append(parkCardEl);
+
+      if (favParksArr.includes(parkCode)) {
+        $('.favorite-btn').addClass('clicked');
+      }
       })
 
     })
@@ -198,6 +206,13 @@ function saveToFav(parkID){
   localStorage.setItem('favParks', JSON.stringify(uniquePark));
 }
 
+function removeFromFav(parkID){
+  let parkArr = [];
+  parkArr = JSON.parse(localStorage.getItem('favParks')) || [];
+  tempArr = removeItem(parkArr, parkID);
+  localStorage.setItem('favParks', JSON.stringify(tempArr));
+}
+
 $(document).ready(function () {
     
   $(document).on('click', '.favorite-btn', function(e){
@@ -205,10 +220,31 @@ $(document).ready(function () {
       e.preventDefault();
       let parkID = $(this).val();
   
-      saveToFav(parkID);
+      //if it is on the favs, click will remove
+      if($(this).hasClass('clicked')){
+        $(this).toggleClass('clicked');
+        $(this).children('i').toggleClass('far');
+        $(this).children('i').toggleClass('fas');
+        removeFromFav(parkID);
+      } else {
+        $(this).toggleClass('clicked');
+        $(this).children('i').toggleClass('far');
+        $(this).children('i').toggleClass('fas');
+        saveToFav(parkID);
+      }
+      // if not on my favs, click will add
+        
   })
 
 });
+
+function removeItem(arr, value){
+  var index = arr.indexOf(value);
+  if (index > -1){
+    arr.splice(index, 1)
+  }
+  return arr;
+}
 
 //hamburger menu
 

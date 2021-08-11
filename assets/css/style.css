@@ -74,6 +74,10 @@ p {
     background-color: violet;
 }
 
+.clicked {
+    color: red !important;
+}
+
 .favorite-btn{
     border: none;
     height: 60px;
