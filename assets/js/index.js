@@ -1,3 +1,5 @@
+
+//Passes the selected <option> into the results.html page
 $('#search').click(function (e) { 
    
     e.preventDefault();
@@ -6,12 +8,14 @@ $('#search').click(function (e) {
 
     addToLocal(stateCode, stateName);
 
-    if(state !== 'State'){
+    if(stateName !== 'State'){
      
        $(window).attr('location', `results.html?state=${stateCode}`);
     }
 });
 
+//Calls the information associated with the "Recent Search"
+//button clicked to then pass to the results.html page
 $(document).ready(function () {
     
    $(document).on('click', '.custom-state-btn', function(e){
@@ -24,6 +28,8 @@ $(document).ready(function () {
 
 });
 
+
+//Activates the 'How it Works' modal on the homepage
 $(document).ready(function () {
     
    $(document).on('click', '#how-it-works', function(e){
@@ -34,28 +40,36 @@ $(document).ready(function () {
 
 });
 
+//Adds previously selected states to local storage for use later
 function addToLocal(stateCode, stateName){
+   
+   //Create Array
    let stateArr = [];
-
+   
+   //Create Object
    let stateInfo = {
       Code: stateCode, 
       Name: stateName
    }
 
+   //Pull from local storage, if it doesn't exist, create an empty array
    stateArr = JSON.parse(localStorage.getItem('previousSelection')) || [];
 
    stateArr.push(stateInfo);
 
+   //Remove Duplicate Objects by StateCode
    let uniqueState = stateArr.filter((value,index,array)=>{
       return array.findIndex(truthy=>{
          return truthy.Code === value.Code
       }) === index
    })
 
+   //Push new Array of unique objects to local storage
    localStorage.setItem('previousSelection', JSON.stringify(uniqueState));
 
 }
 
+//Displays the data in local storage
 function displayPrevState(){
 
    $('#prevState').empty();

@@ -1,5 +1,6 @@
 let favParksEl = $('#favorites');
 
+//Creates a string of the array that is in local Storage of FavParks to pass into the fetchURL
 function getFavParks(){
   
     let parkArr = [];
@@ -26,17 +27,17 @@ async function displayFavParks(favParks){
 
  fetch(fetchURL)
   .then(response => { 
-    if (!response.ok){
-      throw Error("Error");
+    if (response.ok){
+      return response.json();
     }
-    return response.json();
   })
   .then(data => {
 
-    console.log(data.data);
+    //Run a loop for all parks within the data promise
     const html = data.data
      .map(parks => {
       
+       //Define data from National Park Service API to be injected into HTML
       let parkID =parks.id;
       let parkImg = parks.images[0].url;
       let parkImgAlt = parks.images[0].altText;
@@ -48,12 +49,15 @@ async function displayFavParks(favParks){
       let parklat = parks.latitude;
       let parklon = parks.longitude;
 
+      //Deconstruct the parkHouse object for ease of use
       const {monday,tuesday,wednesday,thursday,friday,saturday,sunday} = parkHours
 
       //append data to elements
 
+      //call getForecast function and pass through Lat and Lon for use in Weather API
       const weatherData = getForecast(parklat, parklon).then(data=>{
 
+        //Definte data from weather API service to be injected into HTML
         let currTemp = data.current.temp;
         let feelLike = data.current.feels_like;
         let highTemp = data.daily[0].temp.max;
@@ -66,6 +70,7 @@ async function displayFavParks(favParks){
         let iconAlt = data.current.weather[0].description;
         let iconURL = 'https://openweathermap.org/img/wn/' + iconCode + '@2x.png';
 
+        // Create HTML Element to be appended to page
         parkCardEl = 
         `<div class="park-container card">
         <div>
@@ -101,7 +106,7 @@ async function displayFavParks(favParks){
           <li>Saturday: ${saturday}</li>
           <li>Sunday: ${sunday}</li>
         </ul>
-        <div class="weather-card card column is-offset-3 mr-4">
+        <div class="weather-card card column is-offset-4 mr-6">
               <div class="row is-4">
                 <ul class="hours title is-size-5 has-text-white ml-4">
                   <img src="${iconURL}" alt="${iconAlt}">
@@ -126,6 +131,7 @@ async function displayFavParks(favParks){
         </div>
       </div>`
   
+      //Append HTML to Div Element
       favParksEl.append(parkCardEl);
 
       })
@@ -133,16 +139,15 @@ async function displayFavParks(favParks){
     })
   })
   
-  .catch(error =>{
-      // console.log(error);
-      // console.log(data);
-     });   
 }  
 
-var getForecast = function(lat, lon) {
+//Return data from Fetch Request to be used in the displayFavParks() function
+function getForecast(lat, lon) {
 
     let apiKey = 'ff95b92cc0caa7113edde4310fba7af9' //Burner
     // let apiKey = '1cba65d3c13edbfe6f1ac567815665c2' //Tommy's
+
+    //Create FetchURL to be used in the displayFavParks() function
     var oneCallApi = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=${apiKey}`
 
   return fetch(oneCallApi)
@@ -150,15 +155,8 @@ var getForecast = function(lat, lon) {
   .then(function(response) {
 
     if(response.ok){
-        // if (response === 429) {
-        //  apiKey = ''
-
-        //   getForecast(lat, lon)
-
-        // } else{
           return response.json(); 
         }
-        
     })
 
     .then(function(data) {
@@ -168,6 +166,7 @@ var getForecast = function(lat, lon) {
     })
 }
 
+//apply classes based on uvIndex thresholds
 function uvIndex(uvi){
 
   if(uvi < 3){
@@ -187,6 +186,7 @@ function uvIndex(uvi){
   }
 }
 
+//Remove Park from Favorites if currently selected as a favorite
 function removeFromFav(parkID){
     let parkArr = [];
 
@@ -197,10 +197,10 @@ function removeFromFav(parkID){
     localStorage.setItem('favParks', JSON.stringify(tempArr));
   }
   
+//Allows the user to remove a Save park from Favorites and refreshs the page
 $(document).ready(function () {
     
   $(document).on('click', '.favorite-btn', function(e){
-      console.log('I clicked');
 
       e.preventDefault();
 
@@ -212,10 +212,13 @@ $(document).ready(function () {
   })  
 });
   
+//Used to remove an element from an array 
 function removeItem(arr, value){
+  //Sets index as the elements order in the array
   var index = arr.indexOf(value);
   if (index > -1){
     arr.splice(index, 1)
   }
   return arr;
 }
+

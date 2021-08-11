@@ -1,12 +1,15 @@
 const burgerIcon = document.querySelector("#burger");
 const navbarMenu = document.querySelector("#nav-links");
 
+//Div for the park cards to be appended to
 let allParks = $('#parkNames');
 
+//Gets list of parks from the state selected from the homepage
 async function getParkName(){
 
   const apiKey ="hrzeZivocJeVP942upjoq1HS5TL5d1mRUZmDQ64t"
 
+  //Grabs the URL from the address bar and splits the get the StateCode for the Fetch Request
   let queryString = document.location.search;
   let stateCode = queryString.split('=')[1];
 
@@ -14,23 +17,22 @@ async function getParkName(){
 
   let fetchURL = `https://developer.nps.gov/api/v1/parks?stateCode=&${stateCode}&q=${stateCode}&api_key=${apiKey}`
 
-  console.log(fetchURL);
-
  fetch(fetchURL)
   .then(response => { 
-    if (!response.ok){
-      throw Error("Error");
+    if (response.ok){
+      return response.json();
     }
-    return response.json();
+    
   })
   .then(data => {
 
-    console.log(data.data);
     const html = data.data
-     .map(parks => {
+
+    //Run a loop for all parks within the data promise
+    .map(parks => {
       
+      //Define data from National Park Service API to be injected into HTML
       let parkID =parks.id;
-      // let parkCode = parks.parkCode;
       let parkImg = parks.images[0].url;
       let parkImgAlt = parks.images[0].altText;
       let parkName = parks.fullName;
@@ -41,16 +43,20 @@ async function getParkName(){
       let parklat = parks.latitude;
       let parklon = parks.longitude;
 
+      //Pull a list of the Favorite Parks to apply classes to
       favParksArr = JSON.parse(localStorage.getItem('favParks')) || [];
-      let favParkColor = favParksArr.includes(parkID) ? 'red' : 'white';
+
+      //If parkID is in the favParksArr set class to fas else far
       let favHeart = favParksArr.includes(parkID) ? 'fas' : 'far';
 
+      //Deconstruct the parkHouse object for ease of use
       const {monday,tuesday,wednesday,thursday,friday,saturday,sunday} = parkHours
 
-      //append data to elements
-
+     
+      //call getForecast function and pass through Lat and Lon for use in Weather API
       const weatherData = getForecast(parklat, parklon).then(data=>{
 
+        //Definte data from weather API service to be injected into HTML
         let currTemp = data.current.temp;
         let feelLike = data.current.feels_like;
         let highTemp = data.daily[0].temp.max;
@@ -63,6 +69,7 @@ async function getParkName(){
         let iconAlt = data.current.weather[0].description;
         let iconURL = 'https://openweathermap.org/img/wn/' + iconCode + '@2x.png';
 
+        // Create HTML Element to be appended to page
         parkCardEl = 
         `<div class="park-container card">
         <div>
@@ -123,30 +130,29 @@ async function getParkName(){
         </div>
       </div>`
   
+      //Append HTML to Div Element
       allParks.append(parkCardEl);
 
+      //If the park is included in the favParksArr apply a class to be used in the Favorites Function
       if (favParksArr.includes(parkID)) {
         $('.favorite-btn').addClass('clicked');
       }
       })
 
     })
-    // .join("")
   })
-  
-  .catch(error =>{
-      // console.log(error);
-      // console.log(data);
-     });   
+    
 }  
 
-var getForecast = function(lat, lon) {
+//Return data from Fetch Request to be used in the getParkName() function
+function getForecast(lat, lon) {
 
   let apiKey = 'ff95b92cc0caa7113edde4310fba7af9' //Burner
   // let apiKey = '1cba65d3c13edbfe6f1ac567815665c2' //Erics
   // let apiKey = '43a284bcc0758c5a0b96ec7c9d233494' //Nathans
   // let apiKey = 'f61c81c8ff417a9c362b860a132e5c83' //Tommy's
   
+  //Create FetchURL to be used in the getParkNames() function
   var oneCallApi = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=${apiKey}`
 
   return fetch(oneCallApi)
@@ -167,6 +173,7 @@ var getForecast = function(lat, lon) {
     })
 }
 
+//apply classes based on uvIndex thresholds
 function uvIndex(uvi){
 
   if(uvi < 3){
@@ -186,6 +193,7 @@ function uvIndex(uvi){
   }
 }
 
+//If the favorite parks button is clicked, save it to localStorage
 function saveToFav(parkID){
 
   let parkArr = [];
@@ -194,6 +202,7 @@ function saveToFav(parkID){
 
   parkArr.push(parkID);
 
+  //ensure only unique parks are stored
   let uniquePark = parkArr.filter((c, index) =>{
     return parkArr.indexOf(c) === index;
   });
@@ -201,6 +210,7 @@ function saveToFav(parkID){
   localStorage.setItem('favParks', JSON.stringify(uniquePark));
 }
 
+//Remove Park from Favorites if currently selected as a favorite
 function removeFromFav(parkID){
   let parkArr = [];
   parkArr = JSON.parse(localStorage.getItem('favParks')) || [];
@@ -208,6 +218,7 @@ function removeFromFav(parkID){
   localStorage.setItem('favParks', JSON.stringify(tempArr));
 }
 
+//Allows users to click the Heart button on the card to add to their Favorites to view later in the favorites.html page
 $(document).ready(function () {
     
   $(document).on('click', '.favorite-btn', function(e){
@@ -222,6 +233,7 @@ $(document).ready(function () {
         $(this).children('i').toggleClass('fas');
         removeFromFav(parkID);
       } else {
+        //if it is not on favs, it will add
         $(this).toggleClass('clicked');
         $(this).children('i').toggleClass('far');
         $(this).children('i').toggleClass('fas');
@@ -231,7 +243,9 @@ $(document).ready(function () {
 
 });
 
+//Used to remove an element from an array 
 function removeItem(arr, value){
+  //Sets index as the elements order in the array
   var index = arr.indexOf(value);
   if (index > -1){
     arr.splice(index, 1)
@@ -246,67 +260,3 @@ burgerIcon.addEventListener("click", () => {
 })
 
 getParkName();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function call1 () => {
-//   fetch(api1)
-// }.then(() => {
-//   fetch(api2)
-// })
-
-// //--------------------------------------
-
-
-function call1() {
-  fetch(api1)
-    .then(response => {
-      response
-    })
-    .then(response2 => {
-      response2
-    })
-
-}
-
-async function call2(){
-  const response = await fetch(api1);
-  const response2 = await response;
-
-}
