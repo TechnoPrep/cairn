@@ -24,6 +24,16 @@ $(document).ready(function () {
 
 });
 
+$(document).ready(function () {
+    
+   $(document).on('click', '#how-it-works', function(e){
+
+      $('.modal').toggleClass('is-active');
+       
+   })
+
+});
+
 function addToLocal(stateCode, stateName){
    let stateArr = [];
 
