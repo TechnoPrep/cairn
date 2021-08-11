@@ -37,7 +37,7 @@ async function displayFavParks(favParks){
     const html = data.data
      .map(parks => {
       
-      let parkCode = parks.parkCode;
+      let parkID =parks.id;
       let parkImg = parks.images[0].url;
       let parkImgAlt = parks.images[0].altText;
       let parkName = parks.fullName;
@@ -81,8 +81,8 @@ async function displayFavParks(favParks){
             ${parkName}
           </h2>
         </div>
-        <button class="favorite-btn" style="color: ${favParkColor}" value="${parkCode}";">
-          <i class="${favHeart} fa-heart fa-3x"></i>
+        <button class="favorite-btn" style="color: white" value="${parkID}";">
+          <i class="fas fa-heart fa-3x"></i>
         </button>
         <div class="card-content">
           <h3 class="is-size-2 has-text-weight-semibold">Description</h3>
@@ -128,9 +128,6 @@ async function displayFavParks(favParks){
   
       favParksEl.append(parkCardEl);
 
-      if (favParksArr.includes(parkCode)) {
-        $('.favorite-btn').addClass('clicked');
-      }
       })
 
     })
@@ -144,7 +141,8 @@ async function displayFavParks(favParks){
 
 var getForecast = function(lat, lon) {
 
-    let apiKey = '1cba65d3c13edbfe6f1ac567815665c2' //Tommy's
+    let apiKey = 'ff95b92cc0caa7113edde4310fba7af9' //Burner
+    // let apiKey = '1cba65d3c13edbfe6f1ac567815665c2' //Tommy's
     var oneCallApi = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=${apiKey}`
 
   return fetch(oneCallApi)
@@ -191,26 +189,31 @@ function uvIndex(uvi){
 
 function removeFromFav(parkID){
     let parkArr = [];
+
     parkArr = JSON.parse(localStorage.getItem('favParks')) || [];
+
     tempArr = removeItem(parkArr, parkID);
+
     localStorage.setItem('favParks', JSON.stringify(tempArr));
   }
   
-  $(document).ready(function () {
+$(document).ready(function () {
+    
+  $(document).on('click', '.favorite-btn', function(e){
+      console.log('I clicked');
+
+      e.preventDefault();
+
+      let parkID = $(this).val();
       
-    $(document).on('click', '.favorite-btn', function(e){
+      removeFromFav(parkID);
+  })  
+});
   
-        e.preventDefault();
-        let parkID = $(this).val();
-        //if it is on the favs, click will remove
-        removeFromFav(parkID);
-    })  
-  });
-  
-  function removeItem(arr, value){
-    var index = arr.indexOf(value);
-    if (index > -1){
-      arr.splice(index, 1)
-    }
-    return arr;
+function removeItem(arr, value){
+  var index = arr.indexOf(value);
+  if (index > -1){
+    arr.splice(index, 1)
   }
+  return arr;
+}

@@ -74,10 +74,6 @@ p {
     background-color: violet;
 }
 
-.clicked {
-    color: red !important;
-}
-
 .favorite-btn{
     border: none;
     height: 60px;
@@ -86,6 +82,10 @@ p {
     align-items: center;
     background-color: #C0C0C0;
     margin-left: 20px;
+}
+
+.fas::before {
+    color: red !important;
 }
 
 .fa-heart:hover{

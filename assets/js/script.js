@@ -30,7 +30,7 @@ async function getParkName(){
      .map(parks => {
       
       let parkID =parks.id;
-      let parkCode = parks.parkCode;
+      // let parkCode = parks.parkCode;
       let parkImg = parks.images[0].url;
       let parkImgAlt = parks.images[0].altText;
       let parkName = parks.fullName;
@@ -78,7 +78,7 @@ async function getParkName(){
             ${parkName}
           </h2>
         </div>
-        <button class="favorite-btn" style="color: ${favParkColor}" value="${parkCode}";">
+        <button class="favorite-btn" style="color: white" value="${parkID}";">
           <i class="${favHeart} fa-heart fa-3x"></i>
         </button>
         <div class="card-content">
@@ -125,7 +125,7 @@ async function getParkName(){
   
       allParks.append(parkCardEl);
 
-      if (favParksArr.includes(parkCode)) {
+      if (favParksArr.includes(parkID)) {
         $('.favorite-btn').addClass('clicked');
       }
       })
@@ -142,10 +142,10 @@ async function getParkName(){
 
 var getForecast = function(lat, lon) {
 
-
-  let apiKey = '1cba65d3c13edbfe6f1ac567815665c2' //Erics
+  let apiKey = 'ff95b92cc0caa7113edde4310fba7af9' //Burner
+  // let apiKey = '1cba65d3c13edbfe6f1ac567815665c2' //Erics
   // let apiKey = '43a284bcc0758c5a0b96ec7c9d233494' //Nathans
-    // let apiKey = 'f61c81c8ff417a9c362b860a132e5c83' //Tommy's
+  // let apiKey = 'f61c81c8ff417a9c362b860a132e5c83' //Tommy's
   
   var oneCallApi = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=${apiKey}`
 
@@ -154,12 +154,7 @@ var getForecast = function(lat, lon) {
   .then(function(response) {
 
     if(response.ok){
-        // if (response === 429) {
-        //  apiKey = ''
 
-        //   getForecast(lat, lon)
-
-        // } else{
           return response.json(); 
         }
         
@@ -232,8 +227,6 @@ $(document).ready(function () {
         $(this).children('i').toggleClass('fas');
         saveToFav(parkID);
       }
-      // if not on my favs, click will add
-        
   })
 
 });
