@@ -203,7 +203,8 @@ function removeFromFav(parkID){
         e.preventDefault();
         let parkID = $(this).val();
         //if it is on the favs, click will remove
-        removeFromFav(parkID);  
+        removeFromFav(parkID);
+    })  
   });
   
   function removeItem(arr, value){
