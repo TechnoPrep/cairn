@@ -285,13 +285,6 @@ getParkName();
 
 
 
-
-
-
-
-
-
-
 // function call1 () => {
 //   fetch(api1)
 // }.then(() => {

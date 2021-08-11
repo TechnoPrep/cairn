@@ -59,7 +59,7 @@ function displayPrevState(){
 
          let preStateBtn = 
          `<li>
-         <button value="${tempArr[i].Code}" type="button" class="button custom-state-btn">${tempArr[i].Name}</button>
+         <button value="${tempArr[i].Code}" type="button" class="button custom-state-btn is-fullwidth is-primary is-rounded">${tempArr[i].Name}</button>
          </li>`         
 
          prevStateEl.append(preStateBtn);
