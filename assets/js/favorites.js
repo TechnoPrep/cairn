@@ -207,6 +207,8 @@ $(document).ready(function () {
       let parkID = $(this).val();
       
       removeFromFav(parkID);
+    
+      location.reload();
   })  
 });
   
