@@ -73,3 +73,28 @@ p {
 .uvi-extreme{
     background-color: violet;
 }
+
+.favorite-btn{
+    border: none;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    align-items: center;
+    background-color: #C0C0C0;
+    margin-left: 20px;
+}
+
+.fa-heart:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+    transition: all .2s ease-in-out;
+}
+
+.fa-heart{
+    margin-top: 3px;
+}
+
+/* html active btn style
+<button class="favorite-btn" style="color: red" value="${parkCode}">
+          <i class="fas fa-heart fa-3x hvr-icon"></i>
+          </button> */
