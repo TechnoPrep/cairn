@@ -29,6 +29,7 @@ async function getParkName(){
     const html = data.data
      .map(parks => {
       
+      let parkID =parks.id;
       let parkCode = parks.parkCode;
       let parkImg = parks.images[0].url;
       let parkImgAlt = parks.images[0].altText;
@@ -73,7 +74,7 @@ async function getParkName(){
             ${parkName}
           </h2>
         </div>
-        <button class="favorite-btn" style="color: white" value="${parkCode}" onclick="window.location.href='https://www.youtube.com/watch?v=dQw4w9WgXcQ';">
+        <button class="favorite-btn" style="color: white" value="${parkCode}" onclick=href="./favorites.html">
           <i class="far fa-heart fa-3x"></i>
           </button>
         <div class="card-content">
@@ -182,13 +183,13 @@ function uvIndex(uvi){
   }
 }
 
-function saveToFav(parkCode){
+function saveToFav(parkID){
 
   let parkArr = [];
 
   parkArr = JSON.parse(localStorage.getItem('favParks')) || [];
 
-  parkArr.push(parkCode);
+  parkArr.push(parkID);
 
   let uniquePark = parkArr.filter((c, index) =>{
     return parkArr.indexOf(c) === index;
@@ -202,9 +203,9 @@ $(document).ready(function () {
   $(document).on('click', '.favorite-btn', function(e){
 
       e.preventDefault();
-      let parkCode = $(this).val();
+      let parkID = $(this).val();
   
-      saveToFav(parkCode);
+      saveToFav(parkID);
   })
 
 });
