@@ -37,7 +37,7 @@ async function displayFavParks(favParks){
     const html = data.data
      .map(parks => {
       
-      let parkCode = parks.parkCode;
+      let parkID =parks.id;
       let parkImg = parks.images[0].url;
       let parkImgAlt = parks.images[0].altText;
       let parkName = parks.fullName;
@@ -69,9 +69,6 @@ async function displayFavParks(favParks){
         parkCardEl = 
         `<div class="park-container card">
         <div>
-          <button class="favorite-btn" value="${parkCode}">
-            Save
-          </button>
         <div class="card-image image is-2by1 has-text-centered px-6 mb-5">
           <img
             src="${parkImg}"
@@ -84,6 +81,9 @@ async function displayFavParks(favParks){
             ${parkName}
           </h2>
         </div>
+        <button class="favorite-btn" style="color: white" value="${parkID}";">
+          <i class="fas fa-heart fa-3x"></i>
+        </button>
         <div class="card-content">
           <h3 class="is-size-2 has-text-weight-semibold">Description</h3>
           <p class="park-desc title is-size-5 has-text-grey">
@@ -105,13 +105,13 @@ async function displayFavParks(favParks){
               <div class="row is-4">
                 <ul class="hours title is-size-5 has-text-white ml-4">
                   <img src="${iconURL}" alt="${iconAlt}">
-                  <li>Current Temperature: <span id="current-temp">${currTemp}</span> &deg;F</li>
-                  <li>Feels Like: <span id="current-feels-like">${feelLike}</span> &deg;F</li>
-                  <li>Humidity: <span id="current-humidity">${humidity}</span>%</li>
-                  <li>High: <span id="current-high">${highTemp}</span> &deg;F</li>
-                  <li>Low: <span id="current-low">${lowTemp}</span> &deg;F</li>
-                  <li>Wind Speed: <span id="current-wind-speed">${wind}</span> MPH</li>
-                  <li class="uvIndex">UV Index: <span class="${uviClass}">${uvi}</span></li>
+                  <li>Current Temperature: <span class="current-temp">${currTemp}</span> &deg;F</li>
+                  <li>Feels Like: <span class="current-feels-like">${feelLike}</span> &deg;F</li>
+                  <li>Humidity: <span class="current-humidity">${humidity}</span>%</li>
+                  <li>High: <span class="current-high">${highTemp}</span> &deg;F</li>
+                  <li>Low: <span class="current-low">${lowTemp}</span> &deg;F</li>
+                  <li>Wind Speed: <span class="current-wind-speed">${wind}</span> MPH</li>
+                  <li class="uvIndex">UV Index: <span class="${uviClass}" id="current-uvi">${uvi}</span></li>
               </div>
            </div>
       </div>
@@ -127,6 +127,7 @@ async function displayFavParks(favParks){
       </div>`
   
       favParksEl.append(parkCardEl);
+
       })
 
     })
@@ -140,7 +141,8 @@ async function displayFavParks(favParks){
 
 var getForecast = function(lat, lon) {
 
-    let apiKey = '1cba65d3c13edbfe6f1ac567815665c2' //Tommy's
+    let apiKey = 'ff95b92cc0caa7113edde4310fba7af9' //Burner
+    // let apiKey = '1cba65d3c13edbfe6f1ac567815665c2' //Tommy's
     var oneCallApi = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=${apiKey}`
 
   return fetch(oneCallApi)
@@ -183,4 +185,37 @@ function uvIndex(uvi){
   } else {
     return 'uvi-extreme';
   }
+}
+
+function removeFromFav(parkID){
+    let parkArr = [];
+
+    parkArr = JSON.parse(localStorage.getItem('favParks')) || [];
+
+    tempArr = removeItem(parkArr, parkID);
+
+    localStorage.setItem('favParks', JSON.stringify(tempArr));
+  }
+  
+$(document).ready(function () {
+    
+  $(document).on('click', '.favorite-btn', function(e){
+      console.log('I clicked');
+
+      e.preventDefault();
+
+      let parkID = $(this).val();
+      
+      removeFromFav(parkID);
+    
+      location.reload();
+  })  
+});
+  
+function removeItem(arr, value){
+  var index = arr.indexOf(value);
+  if (index > -1){
+    arr.splice(index, 1)
+  }
+  return arr;
 }

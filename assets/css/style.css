@@ -84,6 +84,10 @@ p {
     margin-left: 20px;
 }
 
+.fas::before {
+    color: red !important;
+}
+
 .fa-heart:hover{
     cursor: pointer;
     transform: scale(1.2);

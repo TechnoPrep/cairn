@@ -29,7 +29,8 @@ async function getParkName(){
     const html = data.data
      .map(parks => {
       
-      let parkCode = parks.parkCode;
+      let parkID =parks.id;
+      // let parkCode = parks.parkCode;
       let parkImg = parks.images[0].url;
       let parkImgAlt = parks.images[0].altText;
       let parkName = parks.fullName;
@@ -39,6 +40,10 @@ async function getParkName(){
       let parkWeb = parks.url;
       let parklat = parks.latitude;
       let parklon = parks.longitude;
+
+      favParksArr = JSON.parse(localStorage.getItem('favParks')) || [];
+      let favParkColor = favParksArr.includes(parkID) ? 'red' : 'white';
+      let favHeart = favParksArr.includes(parkID) ? 'fas' : 'far';
 
       const {monday,tuesday,wednesday,thursday,friday,saturday,sunday} = parkHours
 
@@ -73,9 +78,9 @@ async function getParkName(){
             ${parkName}
           </h2>
         </div>
-        <button class="favorite-btn" style="color: white" value="${parkCode}" onclick="window.location.href='https://www.youtube.com/watch?v=dQw4w9WgXcQ';">
-          <i class="far fa-heart fa-3x"></i>
-          </button>
+        <button class="favorite-btn" style="color: white" value="${parkID}";">
+          <i class="${favHeart} fa-heart fa-3x"></i>
+        </button>
         <div class="card-content">
           <h3 class="is-size-2 has-text-weight-semibold">Description</h3>
           <p class="park-desc title is-size-5 has-text-grey">
@@ -119,6 +124,10 @@ async function getParkName(){
       </div>`
   
       allParks.append(parkCardEl);
+
+      if (favParksArr.includes(parkID)) {
+        $('.favorite-btn').addClass('clicked');
+      }
       })
 
     })
@@ -133,10 +142,10 @@ async function getParkName(){
 
 var getForecast = function(lat, lon) {
 
-
-  let apiKey = '1cba65d3c13edbfe6f1ac567815665c2' //Erics
+  let apiKey = 'ff95b92cc0caa7113edde4310fba7af9' //Burner
+  // let apiKey = '1cba65d3c13edbfe6f1ac567815665c2' //Erics
   // let apiKey = '43a284bcc0758c5a0b96ec7c9d233494' //Nathans
-    // let apiKey = 'f61c81c8ff417a9c362b860a132e5c83' //Tommy's
+  // let apiKey = 'f61c81c8ff417a9c362b860a132e5c83' //Tommy's
   
   var oneCallApi = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly,alerts&appid=${apiKey}`
 
@@ -145,12 +154,7 @@ var getForecast = function(lat, lon) {
   .then(function(response) {
 
     if(response.ok){
-        // if (response === 429) {
-        //  apiKey = ''
 
-        //   getForecast(lat, lon)
-
-        // } else{
           return response.json(); 
         }
         
@@ -182,13 +186,13 @@ function uvIndex(uvi){
   }
 }
 
-function saveToFav(parkCode){
+function saveToFav(parkID){
 
   let parkArr = [];
 
   parkArr = JSON.parse(localStorage.getItem('favParks')) || [];
 
-  parkArr.push(parkCode);
+  parkArr.push(parkID);
 
   let uniquePark = parkArr.filter((c, index) =>{
     return parkArr.indexOf(c) === index;
@@ -197,17 +201,43 @@ function saveToFav(parkCode){
   localStorage.setItem('favParks', JSON.stringify(uniquePark));
 }
 
+function removeFromFav(parkID){
+  let parkArr = [];
+  parkArr = JSON.parse(localStorage.getItem('favParks')) || [];
+  tempArr = removeItem(parkArr, parkID);
+  localStorage.setItem('favParks', JSON.stringify(tempArr));
+}
+
 $(document).ready(function () {
     
   $(document).on('click', '.favorite-btn', function(e){
 
       e.preventDefault();
-      let parkCode = $(this).val();
+      let parkID = $(this).val();
   
-      saveToFav(parkCode);
+      //if it is on the favs, click will remove
+      if($(this).hasClass('clicked')){
+        $(this).toggleClass('clicked');
+        $(this).children('i').toggleClass('far');
+        $(this).children('i').toggleClass('fas');
+        removeFromFav(parkID);
+      } else {
+        $(this).toggleClass('clicked');
+        $(this).children('i').toggleClass('far');
+        $(this).children('i').toggleClass('fas');
+        saveToFav(parkID);
+      }
   })
 
 });
+
+function removeItem(arr, value){
+  var index = arr.indexOf(value);
+  if (index > -1){
+    arr.splice(index, 1)
+  }
+  return arr;
+}
 
 //hamburger menu
 
