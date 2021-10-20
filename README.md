@@ -18,4 +18,4 @@ The user is presented with a page and a form to select from all US States and Te
 
 ## Website Address
 
-[Cairn NPS/Weather API](https://technoprep.github.io/project-1-ne-tj-eb/)
+[Cairn NPS/Weather API](https://technoprep.github.io/cairn/)
